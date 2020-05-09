@@ -7,8 +7,8 @@ class UserTest(OhmTestCase):
         assert self.justin.get_multi("PHONE") == []
     
     def test_tiers(self):
-        assert self.chuck.is_below_tier2('Bronze')
-        assert not self.chuck.is_below_tier2('Carbon')
-        assert not self.chuck.is_below_tier2('Nope')
+        assert self.chuck.is_below_tier('Bronze')
+        assert not self.chuck.is_below_tier('Carbon')
+        assert not self.chuck.is_below_tier('Nope')
 
 

@@ -162,41 +162,8 @@ class User(db.Model):
         return self.tier
 
     def is_below_tier(self, tier):
-        current_tier = self.get_tier()
-
-        if current_tier == "Platinum":
-            return False
-
-        if current_tier == "Gold" and tier == "Platinum":
-            return True
-
-        if current_tier == "Silver" and tier in ("Gold", "Platinum"):
-            return True
-
-        if current_tier == "Bronze" and tier in ("Silver", "Gold", "Platinum"):
-            return True
-
-        if current_tier == "Carbon" and tier in ("Bronze", "Silver", "Gold", "Platinum"):
-            return True
-
-        return False
-    
-    def is_below_tier2(self, tier):
         return is_below(self.get_tier(), tier)
-        # current_tier = self.get_tier()
-        
-        # tiers = {}
-        # tiers['Platinum'] = 0
-        # tiers['Gold'] = 1
-        # tiers['Silver'] = 2
-        # tiers['Bronze'] = 3
-        # tiers['Carbon'] = 4
-        # if(tiers[current_tier] > tiers[tier]):
-        #     return True
-        # return False
-
-
-
+    
 
 
     # These are for Flask Login --------
