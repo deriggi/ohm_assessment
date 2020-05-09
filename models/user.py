@@ -287,4 +287,33 @@ class User(db.Model):
 
         return collate.values()[0:5]
 
+    @classmethod
+    def get_as_csv(cls, u_id):
+        rs = db.session.execute("select user.user_id, tier, display_name, point_balance, m.attribute phone from user left join rel_user_multi m on user.user_id = m.user_id where user.user_id = :uid order by signup_date desc ", {'uid': u_id})
+        phone = 'phone'
+
+        collate = {}
+        lines = ""
+        for r in rs:
+            d = dict(r)
+            user_id = d['user_id']
+            if user_id not in collate:
+                collate[user_id] = d
+            else:
+                collate[user_id][phone]  = collate[user_id][phone] + " " + d[phone]
+        
+        lines += cls.dict_to_csv(collate.values())
+        return lines
+    
+    @classmethod
+    def dict_to_csv(cls, ds):
+        
+        line = ""
+        for d in ds:
+            for k in d:
+                line += str(d[k]) + ","
+            line = line[0:len(line)-1] + '\n'
+
+        return line
+
   

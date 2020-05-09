@@ -19,3 +19,15 @@ def community():
     }
     return render_template("community.html", **args)
 
+@app.route('/download', methods=['GET'])
+def getPlotCSV():
+   try:    
+      id = request.args.get("id")
+      csv = User.get_as_csv(id)
+   except:
+      csv="no_data\n"
+   return Response(
+      csv,
+      mimetype="text/csv",
+      headers={"Content-disposition":
+                 "attachment; filename=userrow.csv"})

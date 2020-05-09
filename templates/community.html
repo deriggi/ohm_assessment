@@ -15,8 +15,8 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="twothirds_div">
-                    <h1>Ready to begin assessment</h1>
-                    Read the README.md file for further instructions.
+                    <h1>Users</h1>
+                    
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
                     <table class="usertable">
                         
                         <thead>
-                            <th>name</th> <th>tier</th> <th> point balance</th>
+                            <th>name</th> <th>tier</th> <th> point balance</th><th> phone</th> <th> download</th>
                         </thead>
                         
                         <tbody>
@@ -37,6 +37,8 @@
                             <td>{{u.tier}}</td>
                             <td>{{u.point_balance}}</td>
                             <td style="white-space: pre;">{{u.phone}}</td>
+                            <td ><a href="/download?id={{u.user_id}}">CSV</a></td>
+
 
                         </tr>
                         {% endfor %}
