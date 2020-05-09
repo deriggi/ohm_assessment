@@ -1,0 +1,50 @@
+{% extends "base_map.html" %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/css/webflow_base.css">
+    <link rel="stylesheet" type="text/css" href="/css/data_view.css">
+
+
+{% endblock %}
+
+{% block body %}
+
+    <div id="container" class="container">
+        <div id="dashboard-top-spacer">&nbsp;</div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="twothirds_div">
+                    <h1>Ready to begin assessment</h1>
+                    Read the README.md file for further instructions.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="twothirds_div">
+                    <table class="usertable">
+                        <thead>
+                            <th>name</th> <th>tier</th> <th> point balance</th>
+                        </thead>
+                        <tbody>
+                        {% for u in most_recent %}
+                        <tr>
+                            <td>{{u[1]}}</td>
+                            <td>{{u[0]}}</td>
+                            <td>{{u[2]}}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>            
+                </div>
+            </div>
+        </div>
+        {% for u in most_recent %}
+        <span>hi</span>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

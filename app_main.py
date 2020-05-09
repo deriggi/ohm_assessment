@@ -206,3 +206,4 @@ def redirect_to_passthrough(url='/'):
 
 
 import pages.dashboard
+import pages.community

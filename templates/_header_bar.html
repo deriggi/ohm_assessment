@@ -172,7 +172,7 @@
     <div id="header-dropdown-block">
         <div id="header-dropdown" class="header-right-item dropdown-toggle" data-toggle="dropdown">
             <div id="header-name" class="display_short_name js-short-name">
-                {{ current_user.short_name() }}
+                {{ current_user.short_name() }} {{ current_user.get_points_and_dollars().points }}
             </div>
             <div id="header-dropdown-icon-block">
                 <img id="header-dropdown-icon" src="/images/dropdown_triangle.png"/>
@@ -187,6 +187,16 @@
                     </div>
                     <div class="dropdown-menu-text">
                         Dashboard
+                    </div>
+                </a>
+            </li>
+            <li class="dropdown-menu-item dropdown-menu-underline">
+                <a href="/community">
+                    <div class="dropdown-menu-icon">
+                        <img src="/images/{{ oem }}/navigation_bar_settings_active.png">
+                    </div>
+                    <div class="dropdown-menu-text">
+                        Community
                     </div>
                 </a>
             </li>

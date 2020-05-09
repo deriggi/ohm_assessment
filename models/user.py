@@ -234,8 +234,8 @@ class User(db.Model):
             if rel_user and rel_user.user:
                 user = rel_user.user
 
-        if user and user.is_deleted():
-            return None
+        # if user and user.is_deleted():
+        #     return None
 
         return user
 
@@ -252,3 +252,7 @@ class User(db.Model):
     def find_by_attribute(cls, rel_lookup, attribute):
         return User.query.join(RelUser).filter_by(rel_lookup=rel_lookup, attribute=attribute).first()
 
+    @classmethod
+    def get_most_recent(cls):
+        rs = db.session.execute("select tier, display_name, point_balance from user order by signup_date desc limit 5")
+        return rs
