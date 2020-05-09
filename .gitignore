@@ -1,2 +1,3 @@
 config/*.cnf
 pages/*.pyc
+alembic/versions/*.pyc
