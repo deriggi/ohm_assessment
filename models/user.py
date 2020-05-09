@@ -7,7 +7,7 @@ from ._helpers import *
 from .rel_user import RelUser
 from .rel_user_multi import RelUserMulti
 from .rel_user_text import RelUserText
-
+from tier import *
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -180,6 +180,24 @@ class User(db.Model):
             return True
 
         return False
+    
+    def is_below_tier2(self, tier):
+        return is_below(self.get_tier(), tier)
+        # current_tier = self.get_tier()
+        
+        # tiers = {}
+        # tiers['Platinum'] = 0
+        # tiers['Gold'] = 1
+        # tiers['Silver'] = 2
+        # tiers['Bronze'] = 3
+        # tiers['Carbon'] = 4
+        # if(tiers[current_tier] > tiers[tier]):
+        #     return True
+        # return False
+
+
+
+
 
     # These are for Flask Login --------
     #
@@ -257,6 +275,7 @@ class User(db.Model):
         rs = db.session.execute("select user.user_id, tier, display_name, point_balance, m.attribute phone from user left join rel_user_multi m on user.user_id = m.user_id order by signup_date desc")
         phone = 'phone'
 
+        # aggregate the response and append phone numbers
         collate = {}
         for r in rs:
             d = dict(r)
@@ -265,8 +284,7 @@ class User(db.Model):
                 collate[user_id] = d
             else:
                 collate[user_id][phone]  = collate[user_id][phone] + "\n" + d[phone]
-        print(collate.values())
 
-        return collate.values()
+        return collate.values()[0:5]
 
   
