@@ -254,5 +254,19 @@ class User(db.Model):
 
     @classmethod
     def get_most_recent(cls):
-        rs = db.session.execute("select tier, display_name, point_balance from user order by signup_date desc limit 5")
-        return rs
+        rs = db.session.execute("select user.user_id, tier, display_name, point_balance, m.attribute phone from user left join rel_user_multi m on user.user_id = m.user_id order by signup_date desc")
+        phone = 'phone'
+
+        collate = {}
+        for r in rs:
+            d = dict(r)
+            user_id = d['user_id']
+            if user_id not in collate:
+                collate[user_id] = d
+            else:
+                collate[user_id][phone]  = collate[user_id][phone] + "\n" + d[phone]
+        print(collate.values())
+
+        return collate.values()
+
+  

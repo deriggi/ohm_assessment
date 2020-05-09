@@ -25,25 +25,28 @@
             <div class="col-md-8">
                 <div class="twothirds_div">
                     <table class="usertable">
+                        
                         <thead>
                             <th>name</th> <th>tier</th> <th> point balance</th>
                         </thead>
+                        
                         <tbody>
                         {% for u in most_recent %}
                         <tr>
-                            <td>{{u[1]}}</td>
-                            <td>{{u[0]}}</td>
-                            <td>{{u[2]}}</td>
+                            <td>{{u.display_name}}</td>
+                            <td>{{u.tier}}</td>
+                            <td>{{u.point_balance}}</td>
+                            <td style="white-space: pre;">{{u.phone}}</td>
+
                         </tr>
                         {% endfor %}
+                        
                         </tbody>
                     </table>            
                 </div>
             </div>
         </div>
-        {% for u in most_recent %}
-        <span>hi</span>
-        {% endfor %}
+      
 
     </div>
 
